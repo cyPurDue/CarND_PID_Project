@@ -10,7 +10,11 @@ The PID procedure follows what was taught in the lessons. The PID.cpp and lines 
 
 ## 3. Reflection
 3.1 Describe the effect each of the P,I,D components had in your implementation.
-Using the tuning approach below, the Kp parameter first makes the control possible, and a reasonable gain will make the control almost successful, but with oscillation. The Pd part makes the system damped, reduced oscillation and decreased the steady-state error. The ki part makes the response quicker, although sometimes during sharp turn, increase the overshoot a little, so a trade-off must be considered by trying different Ki values.
+The proportional gain, Kp, was firstly tuned. A very low Kp will not compensate the error and the system is not stable. A medium Kp value will lead to an oscillated response, and a higher Kp value will make system perform better, but too high Kp will make the system out of control.
+
+The Kd value is the second to be tuned, and it controls the derivative of error. A low Kd gain will lead the system remain underdamped and the car behaves oscillation. A high Kd value will make the system overdamped, but the time to reach steady state will be longer. So a good Kd will make the system around critically damped, which has a better response.
+
+The Ki part is the last tuned one, which helped compensate the steady-state error. A low Ki value will use longer time to reach the steady-state, and a very high Ki value will make the system over-reacted and unstable. So a good value of Ki will help eliminate the steady-state error while perform a quick response.
 
 3.2 Describe how the final hyperparameters were chosen.
 Specifically referring to reference below, which reminds me some previous tuning experience before, I have tuned the PID controller by first tuning the p part. I first increased Kp to be critically stable. In the first straight part on the track, in the simulator, it was seen that the car was oscillating (Although it could fail during sharp turn). After 1st step, Kp = 0.2.
