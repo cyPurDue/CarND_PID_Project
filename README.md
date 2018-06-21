@@ -19,14 +19,16 @@ The Ki part is the last tuned one, which helped compensate the steady-state erro
 3.2 Describe how the final hyperparameters were chosen.
 Specifically referring to reference below, which reminds me some previous tuning experience before, I have tuned the PID controller by first tuning the p part. I first increased Kp to be critically stable. In the first straight part on the track, in the simulator, it was seen that the car was oscillating (Although it could fail during sharp turn). After 1st step, Kp = 0.2.
 
-Then increase the Kd value. Increasing Kd value makes the system till overdamped, showing smaller oscillation during test making the test successfully finished possible. Starting from Kd = 1.0, 1.5, and the system kept failed or almost failed. Then Kd was increased to 3.0,and the result looked much better, and max error sharply decreased. Then Kd was increased to 4.0 and the results was further better. Then after that since the max error did not show obvious drop I just use Kd = 4.0. This procedure is summarized in the table below.
+Then increase the Kd value. Increasing Kd value makes the system till overdamped, showing smaller oscillation during test making the test successfully finished possible. Starting from Kd = 1.0, 1.5, and the system kept failed or almost failed. Then Kd was increased to 3.0,and the result looked much better, and max error sharply decreased. Then Kd was increased to 4.0 and the results was further better. Then after that since the max error did not show obvious drop I just use Kd = 4.0. This procedure is summarized in the table below. <br />
+
 Kp | Kd | Ki | result (in simulation) | max error 
 ---|----|----|------------------------|----------
 0.2 | 1.5 | 0 | almost fail | 5.0812
 0.2 | 3.0 | 0 | much better than above | 1.9479
 0.2 | 4.0 | 0 | better result than above | 1.9189
 
-Then the last step is to find a good Ki value, although the previous result is also visually acceptable. Starting from a relative small value of Ki, such as 0.01 and 0.001, the response on the simulation does not show good result at all. The response was too sharp and overshoot was too high. After dropped down Ki to 0.0001, the system returned to stable and max error was smaller than before. Then I have tried a few options around this number and finally use Ki = 0.00035.
+Then the last step is to find a good Ki value, although the previous result is also visually acceptable. Starting from a relative small value of Ki, such as 0.01 and 0.001, the response on the simulation does not show good result at all. The response was too sharp and overshoot was too high. After dropped down Ki to 0.0001, the system returned to stable and max error was smaller than before. Then I have tried a few options around this number and finally use Ki = 0.00035. <br />
+
 Kp | Kd | Ki | result (in simulation) | max error 
 ---|----|----|------------------------|----------
 0.2 | 1.5 | 0.0001 | stable, a little better than PD control only | 1.8415
